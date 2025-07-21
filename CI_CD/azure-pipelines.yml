@@ -1,0 +1,41 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '6.0.x'
+
+- script: dotnet restore
+  displayName: 'Restore dependencies'
+
+- script: dotnet build --configuration Release --no-restore
+  displayName: 'Build'
+
+- script: dotnet test --no-build --verbosity normal
+  displayName: 'Test'
+
+- script: dotnet publish -c Release -o out
+  displayName: 'Publish'
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    cd frontend
+    npm install
+  displayName: 'Install frontend dependencies'
+
+- script: |
+    cd frontend
+    npm run build
+  displayName: 'Build frontend'
+
+- script: docker build -t meeting-scheduler .
+  displayName: 'Build Docker image' 

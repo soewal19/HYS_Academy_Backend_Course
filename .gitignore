@@ -1,0 +1,23 @@
+# .env файлы
+.env
+
+# Node.js
+node_modules/
+frontend/node_modules/
+
+# Angular build
+frontend/dist/
+
+# .NET build
+bin/
+obj/
+
+# VS Code
+.vscode/
+
+# Логи
+*.log
+
+# OS
+.DS_Store
+Thumbs.db 

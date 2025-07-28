@@ -1,0 +1,37 @@
+<div class="calendar-week-view bg-gray-50 rounded-lg shadow p-4 mt-6">
+  <h4 class="text-xl font-semibold text-blue-700 mb-4">Календарь (неделя): <span class="font-normal text-gray-700">{{ weekStart }}</span></h4>
+  <div class="week-grid grid grid-cols-1 md:grid-cols-5 gap-4">
+    <div class="day-col bg-white rounded-lg shadow p-3 flex flex-col min-h-[220px]" *ngFor="let day of weekDays">
+      <div class="day-header text-center font-bold text-blue-600 mb-2 border-b pb-1">{{ day | date:'EEEE, dd.MM' }}</div>
+      <div class="group-slots mb-2">
+        <div *ngFor="let slot of groupSlotsForDay(day)" class="group-slot cursor-pointer bg-blue-100 text-blue-800 rounded px-2 py-1 mb-1 text-xs hover:bg-blue-200 transition"
+          (click)="onGroupSlotClick(slot)" title="Создать встречу в этом слоте"
+          (dragover)="$event.preventDefault()" (drop)="onSlotDrop(slot, $event)">
+          {{ slot.start | date:'HH:mm' }} - {{ slot.end | date:'HH:mm' }}
+        </div>
+      </div>
+      <div class="meetings flex-1 flex flex-col gap-2">
+        <div *ngFor="let m of meetingsForDay(day)" class="meeting bg-blue-50 border border-blue-200 rounded p-2 shadow-sm relative flex flex-col gap-1 cursor-move"
+          draggable="true"
+          (dragstart)="onMeetingDragStart(m, $event)"
+          [ngClass]="{ 'bg-red-100 border-red-300': hasConflict(m) }"
+          [title]="getMeetingTooltip(m)">
+          <div class="flex items-center gap-2">
+            <b class="text-blue-700">Meeting #{{ m.id }}</b>
+            <span *ngIf="hasConflict(m)" class="conflict-icon text-red-600 text-lg" title="Есть пересечение">⚠️</span>
+          </div>
+          <div class="text-xs text-gray-600">{{ m.startTime | date:'HH:mm' }} - {{ m.endTime | date:'HH:mm' }}</div>
+          <span class="participants text-xs text-gray-500">
+            [<ng-container *ngFor="let pid of m.participantIds; let last = last">
+              {{ getUserNameById(pid) }}<span *ngIf="!last">, </span>
+            </ng-container>]
+          </span>
+          <span class="meeting-actions flex gap-2 mt-1">
+            <button (click)="onEditMeeting(m, $event)" title="Редактировать" class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200">✏️</button>
+            <button (click)="onDeleteMeeting(m, $event)" title="Удалить" class="px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200">🗑️</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

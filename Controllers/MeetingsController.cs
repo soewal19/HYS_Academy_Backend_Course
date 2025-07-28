@@ -33,6 +33,27 @@ public class MeetingsController : ControllerBase
         return Ok(meeting);
     }
 
+    [HttpGet]
+    public IActionResult GetMeetings()
+    {
+        var meetings = _scheduleService.GetAllMeetings();
+        return Ok(meetings);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetMeetingById(int id)
+    {
+        var meeting = _scheduleService.GetMeetingById(id);
+        return meeting == null ? NotFound() : Ok(meeting);
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteMeeting(int id)
+    {
+        _scheduleService.DeleteMeeting(id);
+        return NoContent();
+    }
+
     [HttpGet("users/{userId}")]
     public IActionResult GetUserMeetings(int userId)
     {

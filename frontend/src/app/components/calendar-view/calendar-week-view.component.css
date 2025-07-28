@@ -1,0 +1,73 @@
+.calendar-week-view {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  background: #f9fafb;
+  margin: 16px 0;
+}
+.week-grid {
+  display: flex;
+  gap: 8px;
+}
+.day-col {
+  flex: 1 1 0;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  padding: 8px;
+  min-width: 120px;
+}
+.day-header {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.group-slot {
+  background: #e6fffa;
+  color: #234e52;
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 13px;
+  display: block;
+}
+.meeting {
+  background: #fefcbf;
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 4px;
+  font-size: 13px;
+  transition: box-shadow 0.1s;
+}
+.meeting.busy {
+  background: #fed7d7;
+  border: 1px solid #e53e3e;
+  box-shadow: 0 0 4px #e53e3e33;
+}
+.conflict-icon {
+  color: #e53e3e;
+  font-size: 16px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+.participants {
+  font-size: 11px;
+  color: #718096;
+}
+.meeting-actions {
+  float: right;
+  margin-left: 8px;
+}
+.meeting-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: 2px;
+  padding: 0 2px;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.meeting-actions button:hover {
+  opacity: 1;
+}

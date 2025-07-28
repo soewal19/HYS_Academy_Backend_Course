@@ -1,0 +1,31 @@
+.calendar-view {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  background: #f9fafb;
+  margin: 16px 0;
+}
+.calendar-view h4 {
+  margin-top: 0;
+}
+.calendar-view ul {
+  list-style: none;
+  padding: 0;
+}
+.calendar-view li {
+  margin-bottom: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+.group-slot {
+  background: #e6fffa;
+  color: #234e52;
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  display: inline-block;
+}
+.slot-time {
+  font-family: monospace;
+}

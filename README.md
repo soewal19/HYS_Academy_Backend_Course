@@ -1,89 +1,79 @@
-# Meeting Scheduler Application
+# Meeting Scheduler
 
-## Описание
-Полноценное приложение для планирования встреч между несколькими пользователями без конфликтов по времени. Включает backend на ASP.NET Core и frontend на Angular с Tailwind CSS.
+## Задача
 
-## Структура проекта
+Build a backend system to schedule meetings for multiple users without conflicts. You'll need to implement an algorithm that finds the earliest available time slot for a group of users given their existing schedules.
 
+### Requirements
+
+#### 1. Data Model:
+- User: Id, Name
+- Meeting: Id, Participants, StartTime, EndTime
+
+#### 2. API Endpoints:
+- POST /users
+  - Body: { "name": "Alice" }
+  - Creates a user
+- POST /meetings
+  - Body:
+    {
+      "participantIds": [1, 2, 3],
+      "durationMinutes": 60,
+      "earliestStart": "2025-06-20T09:00:00Z",
+      "latestEnd": "2025-06-20T17:00:00Z"
+    }
+  - Returns the earliest time slot that fits all users' calendars
+- GET /users/{userId}/meetings
+  - Returns all meetings for a user
+
+#### 3. Algorithm Challenge:
+- Finds the earliest non-overlapping time slot that fits the duration and falls within the given day/time range
+- Returns the proposed meeting time
+- Edge cases: partial overlaps, back-to-back meetings, no available time slot
+
+#### 4. Constraints:
+- Business hours: 9:00–17:00 (UTC)
+- In-memory data (no database required)
+- ASP.NET Core
+
+#### 5. Code Quality Expectations:
+- Clean architecture encouraged
+- Separation of concerns
+- Unit-tested algorithm logic (mandatory)
+
+### Тестирование
+
+#### Модульные тесты
+- **Тесты ScheduleService**: Полное покрытие алгоритма планирования, включая:
+  - Граничные условия (минимальная/максимальная длительность встречи)
+  - Проверки временных слотов
+  - Обнаружение конфликтов
+  - Планирование с несколькими участниками
+  - Крайние случаи (нет доступных слотов, встречи подряд)
+
+#### Интеграционные тесты
+- **Тесты API эндпоинтов**:
+  - Управление пользователями (создание, получение, удаление)
+  - Планирование и получение встреч
+  - Обработка невалидных данных
+  - Крайние случаи (несуществующие пользователи/встречи, пустые списки участников)
+
+#### Запуск тестов
+```bash
+# Запуск всех тестов
+dotnet test
+
+# Запуск конкретного тестового проекта
+dotnet test Tests/Tests.csproj
+
+# Запуск с подробным выводом
+dotnet test --logger:"console;verbosity=detailed"
 ```
-BackendCourse_2025Summer/
-├── Controllers/           # API endpoints (Meetings, Users)
-├── Models/                # Модели данных (User, Meeting, MeetingRequest)
-├── Services/              # Бизнес-логика (ScheduleService)
-├── Tests/                 # Unit-тесты для алгоритма планирования
-├── frontend/              # Angular-приложение (UI, сервисы, модели)
-├── CI_CD/                 # Скрипты и конфиги для CI/CD
-│   ├── github-actions-dotnet.yml # Пример workflow для GitHub Actions
-│   └── azure-pipelines.yml      # Пример pipeline для Azure Pipelines
-├── Dockerfile             # Docker-образ для backend
-├── .env                   # Переменные окружения
-└── README.md              # Документация
-```
 
-## Как работает приложение
-- Пользователь может создать себя через POST /users
-- Можно создать встречу для группы пользователей через POST /meetings — система найдет первый доступный слот без пересечений
-- Можно получить список встреч пользователя через GET /users/{userId}/meetings
-- Вся логика поиска слота реализована в сервисе ScheduleService (учет пересечений, рабочие часы, edge cases)
-- Все данные хранятся в памяти (in-memory)
+### Ограничения по времени
+- Основная функциональность: ~2–3 часа
+- Тестирование и покрытие кейсов: дополнительно 1-2 часа
 
-## Запуск приложения
-### Backend
-1. Перейдите в корень проекта
-2. Запустите backend:
-   ```bash
-   dotnet run
-   ```
-   Backend будет доступен на http://localhost:5000
-
-### Frontend
-1. Перейдите в папку frontend:
-   ```bash
-   cd frontend
-   npm install
-   npm start
-   ```
-   Приложение будет доступно на http://localhost:4200
-
-### Docker
-1. Соберите и запустите контейнер:
-   ```bash
-   docker build -t meeting-scheduler .
-   docker run -p 5000:5000 meeting-scheduler
-   ```
-
-### CI/CD
-- Все скрипты и конфиги для CI/CD находятся в папке `CI_CD/`
-- Примеры workflow:
-  - GitHub Actions: `CI_CD/github-actions-dotnet.yml`
-  - Azure Pipelines: `CI_CD/azure-pipelines.yml`
-- Автоматическая сборка, тестирование и деплой при пуше в main
-
-## Переменные окружения (.env)
-```
-ASPNETCORE_URLS=http://+:5000
-# Дополнительные переменные при необходимости
-```
-
-## API Endpoints
-- POST /users — создать пользователя
-- POST /meetings — создать встречу (алгоритм поиска слота)
-- GET /users/{userId}/meetings — получить встречи пользователя
-
-## Ограничения
-- Все данные теряются при перезапуске (in-memory)
-- Нет аутентификации/авторизации
-
-## Тестирование
-- Unit-тесты для алгоритма планирования находятся в папке `Tests/`
-- Запуск тестов:
-  ```bash
-  dotnet test
-  ```
-
-## Лицензия
-MIT
-
----
-
-**English version available in [README.en.md](README.en.md)** 
+### Отправка решения
+- Репозиторий GitHub или архив
+- README с инструкциями по настройке и известными ограничениями

@@ -77,3 +77,9 @@ dotnet test --logger:"console;verbosity=detailed"
 ### Отправка решения
 - Репозиторий GitHub или архив
 - README с инструкциями по настройке и известными ограничениями
+
+### Результат работы программы
+
+![backend](https://github.com/soewal19/HYS_Academy_Backend_Course/tree/main/img/1.png)
+
+

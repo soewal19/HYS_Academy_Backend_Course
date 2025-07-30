@@ -1,6 +1,6 @@
 # Meeting Scheduler
 
-## Задача
+## Tasks
 
 Build a backend system to schedule meetings for multiple users without conflicts. You'll need to implement an algorithm that finds the earliest available time slot for a group of users given their existing schedules.
 

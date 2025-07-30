@@ -84,17 +84,29 @@ dotnet test --logger:"console;verbosity=detailed"
 
 ![backend](img/1.png)
 
+
+
+
 ## Frontend
 
-![frontend](frontend/1.png)
+![frontend](img/frontend.png)
+
+
+
 
 ## Verstka
 
 ![verstka](img/verstka.png)
 
+
+
+
 ## Swagger
 
 ![swagger](img/1.png)
+
+
+
 ## Test
 
 ![test](img/TestFiles.png)

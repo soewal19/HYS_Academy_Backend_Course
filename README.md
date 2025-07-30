@@ -41,44 +41,47 @@ Build a backend system to schedule meetings for multiple users without conflicts
 - Separation of concerns
 - Unit-tested algorithm logic (mandatory)
 
-### Тестирование
+### Testing
 
-#### Модульные тесты
-- **Тесты ScheduleService**: Полное покрытие алгоритма планирования, включая:
-  - Граничные условия (минимальная/максимальная длительность встречи)
-  - Проверки временных слотов
-  - Обнаружение конфликтов
-  - Планирование с несколькими участниками
-  - Крайние случаи (нет доступных слотов, встречи подряд)
+#### Unit Tests
+- **ScheduleService Tests**: Full coverage of the scheduling algorithm, including:
+  - Boundary conditions (minimum/maximum meeting duration)
+  - Time slot validations
+  - Conflict detection
+  - Scheduling with multiple participants
+  - Edge cases (no available slots, back-to-back meetings)
 
-#### Интеграционные тесты
-- **Тесты API эндпоинтов**:
-  - Управление пользователями (создание, получение, удаление)
-  - Планирование и получение встреч
-  - Обработка невалидных данных
-  - Крайние случаи (несуществующие пользователи/встречи, пустые списки участников)
+#### Integration Tests
+- **API Endpoint Tests**:
+  - User management (create, retrieve, delete)
+  - Scheduling and retrieving meetings
+  - Handling invalid data
+  - Edge cases (non-existent users/meetings, empty participant lists)
 
-#### Запуск тестов
+#### Running Tests
 ```bash
-# Запуск всех тестов
+# Run all tests
 dotnet test
 
-# Запуск конкретного тестового проекта
+# Run a specific test project
 dotnet test Tests/Tests.csproj
 
-# Запуск с подробным выводом
+# Run with detailed output
 dotnet test --logger:"console;verbosity=detailed"
 ```
 
-### Ограничения по времени
-- Основная функциональность: ~2–3 часа
-- Тестирование и покрытие кейсов: дополнительно 1-2 часа
 
-### Отправка решения
-- Репозиторий GitHub или архив
-- README с инструкциями по настройке и известными ограничениями
 
-### Результат работы программы
+### Time Estimates
+- Core functionality: ~2–3 hours
+- Testing and case coverage: additional 1–2 hours
+
+### Submission
+ - GitHub repository or archive
+ - README with setup instructions and known limitations
+
+### Program Output
+
 
 ## Backend
 

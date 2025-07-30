@@ -82,4 +82,6 @@ dotnet test --logger:"console;verbosity=detailed"
 
 ![backend](https://github.com/soewal19/HYS_Academy_Backend_Course/tree/main/img/1.png)
 
+![Скриншот](img/1.png)
+
 

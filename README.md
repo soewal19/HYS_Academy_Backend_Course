@@ -80,8 +80,23 @@ dotnet test --logger:"console;verbosity=detailed"
 
 ### Результат работы программы
 
-![backend](https://github.com/soewal19/HYS_Academy_Backend_Course/tree/main/img/1.png)
+## Backend
 
-![Скриншот](img/1.png)
+![backend](img/1.png)
+
+## Frontend
+
+![frontend](frontend/1.png)
+
+## Verstka
+
+![verstka](img/verstka.png)
+
+## Swagger
+
+![swagger](img/1.png)
+## Test
+
+![test](img/TestFiles.png)
 
 

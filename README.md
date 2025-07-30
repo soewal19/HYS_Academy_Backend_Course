@@ -103,7 +103,7 @@ dotnet test --logger:"console;verbosity=detailed"
 
 ## Swagger
 
-![swagger](img/1.png)
+![swagger](img/swagger.png)
 
 
 
